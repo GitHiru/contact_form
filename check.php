@@ -6,19 +6,19 @@
     // echo $nickname;
 
     if ($nickname == "") {
-        $nickname_result = 'No Nickname';
+        $nickname_result = '<span style="color:red;">No Nickname</span>';
     } else {
         $nickname_result = "Welcom to ${nickname} ";
     }
 
     if ($email == "") {
-        $email_result = 'No email';
+        $email_result = '<span style="color:red;">No email</span>';
     } else {
         $email_result = "Your mail address : ${email} ";
     }
 
     if ($content == "") {
-        $content_result = 'No content';
+        $content_result = '<span style="color:red;">No content</span>';
     } else {
         $content_result = "Your content : ${content} ";
     }
@@ -38,7 +38,7 @@
     <p><?php echo $content_result; ?></p>
 
     <form class="" action="thanks.php" method="post">
-        
+
         <input type="hidden" name="nickname" value="<?php echo $nickname ?>">
         <input type="hidden" name="email" value="<?php echo $email ?>">
         <input type="hidden" name="content" value="<?php echo $content ?>">

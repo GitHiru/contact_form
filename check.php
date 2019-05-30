@@ -1,10 +1,33 @@
 <?php
-    //$_POST ... super global 関数
-    $nickname = $_POST['nickname'];
-    $email = $_POST['email'];
-    $content = $_POST['content'];
+    //  ▼セキュリティ▼
+    //  きちんとメソッドに値がきているか確認する処理
+    //  （メソッドがPOSTじゃ無い時はinde.htmlにredirect）
+    if($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header('Location: index.html');
+    }
+
+    // ▼$_POST ... super global 関数▼
+    // $nickname = $_POST['nickname'];
+    // $email = $_POST['email'];
+    // $content = $_POST['content'];
     // echo $nickname;
 
+    // ▼クロスサイトスクリプト対策（XSS）▼
+    // htmlspecialchars()
+    // https://www.php.net/manual/ja/function.htmlspecialchars.php
+    // $nickname = htmlspecialchars($_POST['nickname']);
+    // $email = htmlspecialchars($_POST['email']);
+    // $content = htmlspecialchars($_POST['content']);
+
+    //▼関数呼び出し▼
+    require_once('function.php');
+    $nickname = h($_POST['nickname']);
+    $email = h($_POST['email']);
+    $content = h($_POST['content']);
+
+
+    // ▼条件分岐▼
+    // （入力フォームに値が無い時にエラー文を返す。）
     if ($nickname == "") {
         $nickname_result = '<span style="color:red;">No Nickname</span>';
     } else {
@@ -44,10 +67,11 @@
         <input type="hidden" name="content" value="<?php echo $content ?>">
 
         <input type="button" value="Back" onclick="history.back()">
-        <!-- コロン構文を用いてHTML内部にPHPを書く。 -->
-        <?php if ($nickname != "" && $email != "" && $content != ""): //コロン構文 ?>
+        <!-- コロン構文を用いてHTML内部にPHPを書く。 if(){} = if():-->
+        <?php if ($nickname != "" && $email != "" && $content != ""):?>
             <input type="submit" value="Submit OK">
         <?php endif; ?>
     </form>
+
 </body>
 </html>

@@ -20,11 +20,11 @@
     // $content = htmlspecialchars($_POST['content']);
 
     //▼関数呼び出し▼
+    //（_once 一回切り呼び出す！意）
     require_once('function.php');
     $nickname = h($_POST['nickname']);
     $email = h($_POST['email']);
     $content = h($_POST['content']);
-
 
     // ▼条件分岐▼
     // （入力フォームに値が無い時にエラー文を返す。）

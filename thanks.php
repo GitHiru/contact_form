@@ -2,9 +2,10 @@
     if($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.html');
     }
-    $nickname = $_POST['nickname'];
-    $email = $_POST['email'];
-    $content = $_POST['content'];
+    require_once('function.php');
+    $nickname = h($_POST['nickname']);
+    $email = h($_POST['email']);
+    $content = h($_POST['content']);
 ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">

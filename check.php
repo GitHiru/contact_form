@@ -1,6 +1,6 @@
 <?php
     //  ▼セキュリティ▼
-    //  きちんとメソッドに値がきているか確認する処理
+    //  きちんとメソッドに値が来ているか確認する処理
     //  （メソッドがPOSTじゃ無い時はinde.htmlにredirect）
     if($_SERVER['REQUEST_METHOD'] !== 'POST') {
         header('Location: index.html');

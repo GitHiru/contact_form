@@ -6,6 +6,13 @@
     $nickname = h($_POST['nickname']);
     $email = h($_POST['email']);
     $content = h($_POST['content']);
+
+    // DBとの接続文
+    require_once('db_connect.php');
+    $dbh->prepare('INSERT INTO survays (nickname, email, content) VALUES(?,?,?)');
+    $stmt->execute([$nickname, $email, $content]);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja" dir="ltr">

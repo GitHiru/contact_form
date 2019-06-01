@@ -1,22 +1,20 @@
 <?php
+
     if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header('Location: index.html');
     }
-    // if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    //     header('Location: index.html');
-    // }
-
-    // 関数の呼び出し
     require_once('function.php');
-
     $nickname = h($_POST['nickname']);
-    $email = h($_POST['email']);
-    $content = h($_POST['content']);
+    $email    = h($_POST['email']);
+    $content  = h($_POST['content']);
 
-    //DBとの接続
+    /* DBとの接続 */
     require_once('dbconnect.php');
+    //DBにInsertする準備（アロー演算子がNewでインスタンスされたクラスから引っ張る）
     $stmt = $dbh->prepare('INSERT INTO surveys (nickname, email, content) VALUES (?, ?, ?)');
-    $stmt->execute([$nickname, $email, $content]);//?を変数に置き換えてSQLを実行
+    //?を変数に置き換えてSQLを実行
+    $stmt->execute([$nickname, $email, $content]);
 
 ?>
 <!DOCTYPE html>

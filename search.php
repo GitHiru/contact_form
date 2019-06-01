@@ -1,11 +1,14 @@
 <?php
-// DB接続の一覧から値を検索するページ
+// search.php
+
 require_once('function.php');
 require_once('dbconnect.php');
+
 $nickname = '';
 if (isset($_GET['nickname'])) {
     $nickname = $_GET['nickname'];
 }
+
 $stmt = $dbh->prepare('SELECT * FROM surveys WHERE nickname like ?');
 $stmt->execute(["%$nickname%"]);
 $results = $stmt->fetchAll();

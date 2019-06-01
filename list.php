@@ -1,10 +1,13 @@
 <?php
-// DB接続の一覧を表示するページ
+// http://localhost/php_contact_form/list.php
+
 require_once('function.php');
 require_once('dbconnect.php');
+
 $stmt = $dbh->prepare('SELECT * FROM surveys');
 $stmt->execute();
 $results = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -20,3 +23,6 @@ $results = $stmt->fetchAll();
     <?php endforeach;?>
 </body>
 </html>
+
+
+
